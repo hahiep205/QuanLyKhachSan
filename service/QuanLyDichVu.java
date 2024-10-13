@@ -2,6 +2,7 @@ package service;
 
 import model.DichVu;
 import java.util.ArrayList;
+import model.KhachHang;
 
 public class QuanLyDichVu {
     private ArrayList<DichVu> DanhSachDichVu;
@@ -12,6 +13,10 @@ public class QuanLyDichVu {
         DanhSachDichVu.add(new DichVu("Đưa đón", 200000));
         DanhSachDichVu.add(new DichVu("Giặt ủi", 50000));
         DanhSachDichVu.add(new DichVu("Spa", 300000));
+    }
+
+    public void ThemDichVu(DichVu DichVu) {
+        DanhSachDichVu.add(DichVu);
     }
 
     public void HienThiDichVu() {
