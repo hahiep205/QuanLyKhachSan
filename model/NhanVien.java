@@ -1,72 +1,52 @@
 package model;
 
-public class NhanVien {
-    private String ten;
-    private String queQuan;
-    private String sdt;
-    private String cccd;
-    private String soTaiKhoan;
+public class Phong {
+    private String SoPhong;
+    private String LoaiPhong;
+    private String TrangThai;
+    private double gia;
 
-    public NhanVien(String ten, String queQuan, String sdt, String cccd, String soTaiKhoan) {
-        this.ten = ten;
-        this.queQuan = queQuan;
-        this.sdt = sdt;
-        this.cccd = cccd;
-        this.soTaiKhoan = soTaiKhoan;
+    public Phong(String SoPhong, String LoaiPhong, String TrangThai, double gia) {
+        this.SoPhong = SoPhong;
+        this.LoaiPhong = LoaiPhong;
+        this.TrangThai = TrangThai;
+        this.gia = gia;
     }
 
-    public String getTen() {
-        return ten;
+    public double getGia() {
+        return gia;
     }
 
-    public void setTen(String ten) {
-        this.ten = ten;
+    public void setGia(double gia) {
+        this.gia = gia;
     }
 
-    public String getQueQuan() {
-        return queQuan;
+    public String getSoPhong() {
+        return SoPhong;
     }
 
-    public void setQueQuan(String queQuan) {
-        this.queQuan = queQuan;
+    public void setSoPhong(String SoPhong) {
+        this.SoPhong = SoPhong;
     }
 
-    public String getSdt() {
-        return sdt;
+    public String getLoaiPhong() {
+        return LoaiPhong;
     }
 
-    public void setSdt(String sdt) {
-        this.sdt = sdt;
+    public void setLoaiPhong(String LoaiPhong) {
+        this.LoaiPhong = LoaiPhong;
     }
 
-    public String getCccd() {
-        return cccd;
+    public String getTrangThai() {
+        return TrangThai;
     }
 
-    public void setCccd(String cccd) {
-        this.cccd = cccd;
+    public void setTrangThai(String TrangThai) {
+        this.TrangThai = TrangThai;
     }
 
-    public String getSoTaiKhoan() {
-        return soTaiKhoan;
-    }
-
-    public void setSoTaiKhoan(String soTaiKhoan) {
-        this.soTaiKhoan = soTaiKhoan;
-    }
-
-    // Phương thức kiểm tra tính hợp lệ của thông tin tài khoản (so sánh tên và số tài khoản)
-    public boolean kiemTraTaiKhoan(String ten, String soTaiKhoan) {
-        return this.ten.equalsIgnoreCase(ten) && this.soTaiKhoan.equals(soTaiKhoan);
-    }
-
-    // Phương thức hiển thị thông tin nhân viên
-    @Override
-    public String toString() {
-        return "Tên: " + ten +
-               " - Quê quán: " + queQuan +
-               " - Số điện thoại: " + sdt +
-               " - CCCD: " + cccd +
-               " - Số tài khoản: " + soTaiKhoan;
+    // Phương thức tính tiền dựa trên số ngày
+    public double tinhTien(int soNgay) {
+        return gia * soNgay;
     }
 }
