@@ -1,7 +1,9 @@
 package service;
 
+import java.text.SimpleDateFormat;
 import model.NhanVien;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class QuanLyNhanVien {
@@ -69,4 +71,5 @@ public class QuanLyNhanVien {
                     + " - Số tài khoản: " + nv.getSoTaiKhoan());
         }
     }
+
 }
