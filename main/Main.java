@@ -64,6 +64,7 @@ public class Main {
                         String ten = NhapDuLieu.nhapTenKhachHang();
                         String sdt = NhapDuLieu.nhapSDT();
                         String cccd = NhapDuLieu.nhapCCCD();
+
                         KhachHang khachMoi = new KhachHang(ten, sdt, cccd);
                         quanLyKhachHang.ThemKhachHang(khachMoi);
                         System.out.println("\nThêm khách hàng thành công!");
@@ -123,13 +124,13 @@ public class Main {
                 case 2:
                     System.out.println("\n1. Hiển thị danh sách phòng trống");
                     System.out.println("2. Sửa loại phòng");
-
                     int room = NhapDuLieu.case2Chon();
+
                     if (room == 1) {
                         quanLyPhong.trangThaiPhong();
                     } else if (room == 2) {
                         // Sửa loại phòng
-                        String soPhong = NhapDuLieu.nhapSoPhong();
+                        String soPhong = NhapDuLieu.nhapSoPhong(quanLyPhong);
                         String loaiPhongMoi = NhapDuLieu.nhapLoaiPhongMoi();
                         quanLyPhong.suaPhong(soPhong, loaiPhongMoi);
                     }
@@ -182,18 +183,27 @@ public class Main {
                 // THANH TOÁN
                 case 5:
                     System.out.println("\n---------- Thanh toán ----------");
-                    String tenKhachHang = NhapDuLieu.nhapTenKhachThanhToan();
+                    String tenKhachHang = NhapDuLieu.nhapTenKhachThanhToan(quanLyKhachHang);
 
                     KhachHang khachThanhToan = quanLyKhachHang.TimKiemKhachHang(tenKhachHang);
 
+                    Phong phongThanhToan = null;
+
                     if (khachThanhToan != null) {
-                        Phong phongThanhToan = null;
                         String soPhongThanhToan = NhapDuLieu.nhapSoPhongThanhToan(phongThanhToan, quanLyPhong);
+                        phongThanhToan = quanLyPhong.timPhong(soPhongThanhToan);
 
                         int ngay = NhapDuLieu.nhapSoNgayO();
 
                         double tienPhong = thanhToan.TienPhong(phongThanhToan, ngay);
-                        System.out.println("\nTổng tiền phòng: " + tienPhong);
+
+                        // Kiểm tra xem tiền phòng có hợp lệ không
+                        if (tienPhong <= 0) {
+                            System.out.println("Lỗi: Không thể tính tiền phòng. Loại phòng không hợp lệ.");
+                            break;
+                        }
+
+                        System.out.println("\nTổng tiền phòng: " + String.format("%,.2f", tienPhong));
                         System.out.println("---------------------------");
 
                         System.out.println("\nDanh sách dịch vụ: ");
@@ -205,7 +215,6 @@ public class Main {
                         double tongTienDichVu = 0;
 
                         for (int i = 0; i < soDichVu; i++) {
-
                             while (true) {
                                 String tenDichVu = "";
                                 try {
@@ -227,7 +236,7 @@ public class Main {
                                     System.out.println(
                                             "\nKhách đã chọn dịch vụ: " + dichVu.getTenDichVu() + "\n"
                                             + " - Số lượng: " + soLuong + "\n"
-                                            + " - Thành tiền: " + tienDichVu);
+                                            + " - Thành tiền: " + String.format("%,.2f", tienDichVu));
                                     break;
                                 } catch (IllegalArgumentException e) {
                                     System.out.println("Lỗi: " + e.getMessage());
@@ -235,12 +244,12 @@ public class Main {
                             }
                         }
 
-                        System.out.println("\nTổng tiền dịch vụ: " + tongTienDichVu);
+                        System.out.println("\nTổng tiền dịch vụ: " + String.format("%,.2f", tongTienDichVu));
 
                         double tongTien = tienPhong + tongTienDichVu;
-                        System.out.println("\nTổng tiền thanh toán: " + tongTien);
+                        System.out.println("\nTổng tiền thanh toán: " + String.format("%,.2f", tongTien));
 
-                        phongThanhToan.setTrangThai("Trong"); // Gọi phương thức để cập nhật trạng thái phòng
+                        phongThanhToan.setTrangThai("Trong");
 
                         System.out.println("\nThanh toán thành công!");
                     } else {
