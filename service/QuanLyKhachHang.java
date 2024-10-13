@@ -8,11 +8,26 @@ public class QuanLyKhachHang {
 
     public QuanLyKhachHang() {
         DanhSachKhachHang = new ArrayList<>();
-        DanhSachKhachHang.add(new KhachHang("Nguyen Duc A", "0812551230", "0000000001"));
-        DanhSachKhachHang.add(new KhachHang("Mai Van B", "0912551230", "0000000002"));
-        DanhSachKhachHang.add(new KhachHang("Nguyen Hong C", "0889999403", "0000000003"));
-        DanhSachKhachHang.add(new KhachHang("Le Thi D", "0812442111", "0000000004"));
-        DanhSachKhachHang.add(new KhachHang("Dang Duc E", "0912551230", "0000000005"));
+
+        KhachHang kh1 = new KhachHang("Nguyen Duc A", "0812551230", "0000000001");
+        kh1.ThemLichSuDatPhong("1");
+        DanhSachKhachHang.add(kh1);
+        
+        KhachHang kh2 = new KhachHang("Mai Van B", "0912551230", "0000000002");
+        kh2.ThemLichSuDatPhong("2");
+        DanhSachKhachHang.add(kh2);
+        
+        KhachHang kh3 = new KhachHang("Nguyen Hong C", "0889999403", "0000000003");
+        kh3.ThemLichSuDatPhong("3");
+        DanhSachKhachHang.add(kh3);
+        
+        KhachHang kh4 = new KhachHang("Le Thi D", "0812442111", "0000000004");
+        kh4.ThemLichSuDatPhong("4");
+        DanhSachKhachHang.add(kh4);
+        
+        KhachHang kh5 = new KhachHang("Dang Duc E", "0912551230", "0000000005");
+        kh5.ThemLichSuDatPhong("5");
+        DanhSachKhachHang.add(kh5);
     }
 
     public void ThemKhachHang(KhachHang KhachHang) {
@@ -48,9 +63,6 @@ public class QuanLyKhachHang {
         KhachHang KhachHang = TimKiemKhachHang(Key);
         if (KhachHang != null) {
             DanhSachKhachHang.remove(KhachHang);
-            System.out.println("\nXóa khách hàng thành công.");
-        } else {
-            System.out.println("\nKhông tìm thấy khách hàng.");
         }
     }
 
