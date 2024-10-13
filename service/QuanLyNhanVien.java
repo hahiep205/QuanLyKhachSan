@@ -1,9 +1,7 @@
 package service;
 
-import java.text.SimpleDateFormat;
 import model.NhanVien;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 public class QuanLyNhanVien {
@@ -69,53 +67,6 @@ public class QuanLyNhanVien {
                     + " - Số điện thoại: " + nv.getSdt()
                     + " - CCCD: " + nv.getCccd()
                     + " - Số tài khoản: " + nv.getSoTaiKhoan());
-        }
-    }
-
-    // Phương thức thanh toán lương
-    public void ThanhToanLuong() {
-        HienThiDanhSachNV();
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Nhập tên nhân viên: ");
-        String ten = sc.nextLine();
-        System.out.print("Nhập số tài khoản: ");
-        String soTaiKhoan = sc.nextLine();
-        System.out.print("Nhập số tiền muốn chuyển: ");
-        double soTien = sc.nextDouble();
-
-        NhanVien nhanVien = TimKiemNhanVien(ten, soTaiKhoan);
-        if (nhanVien != null) {
-            // Ghi lại lịch sử trả lương
-            LichSuTraLuong.add("Chuyển tiền thành công tới nhân viên: " + nhanVien.getTen() + " - " + soTaiKhoan + " - " + soTien + " - " + new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date()));
-            System.out.println("Chuyển tiền thành công tới nhân viên: " + nhanVien.getTen() + " - " + soTaiKhoan + " - " + soTien + " - " + new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date()));
-        } else {
-            System.out.println("Không tìm thấy nhân viên.");
-        }
-    }
-
-    // Phương thức tìm kiếm nhân viên theo tên và số tài khoản
-    public NhanVien TimKiemNhanVien(String ten, String soTaiKhoan) {
-        for (NhanVien nv : DanhSachNhanVien) {
-            if (nv.getTen().equalsIgnoreCase(ten) && nv.getSoTaiKhoan().equals(soTaiKhoan)) {
-                return nv;
-            }
-        }
-        return null;
-    }
-
-    // Phương thức hiển thị lịch sử trả lương
-    public void HienThiLichSuTraLuong() {
-        System.out.println("Lịch sử trả lương:");
-        for (String lichSu : LichSuTraLuong) {
-            System.out.println(lichSu);
-        }
-    }
-
-    // Phương thức hiển thị danh sách nhân viên
-    public void HienThiDanhSachNV2() {
-        for (NhanVien nv : DanhSachNhanVien) {
-            System.out.println("Tên nhân viên: " + nv.getTen() + " - Số tài khoản: " + nv.getSoTaiKhoan());
         }
     }
 }
