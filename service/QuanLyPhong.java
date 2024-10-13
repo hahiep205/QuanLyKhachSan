@@ -55,7 +55,7 @@ public class QuanLyPhong {
                     return;
             }
 
-            System.out.println("\nCập nhật thành công. Loại phòng mới: " + phong.getLoaiPhong());
+            System.out.println("\nCập nhật thành công! \nPhòng số: " + soPhong + " - Loại phòng mới: " + phong.getLoaiPhong());
         } else {
             System.out.println("\nKhông tìm thấy phòng có số: " + soPhong);
         }
