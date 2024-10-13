@@ -10,7 +10,7 @@ public class QuanLyDichVu {
     public QuanLyDichVu() {
         DanhSachDichVu = new ArrayList<>();
         DanhSachDichVu.add(new DichVu("An sang", 100000));
-        DanhSachDichVu.add(new DichVu("Dua donn", 200000));
+        DanhSachDichVu.add(new DichVu("Dua don", 200000));
         DanhSachDichVu.add(new DichVu("Giat ui", 50000));
         DanhSachDichVu.add(new DichVu("Spa", 300000));
     }
