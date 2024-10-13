@@ -40,10 +40,24 @@ public class QuanLyPhong {
     public void suaPhong(String soPhong, String loaiPhongMoi) {
         Phong phong = timPhong(soPhong);
         if (phong != null) {
-            phong.setLoaiPhong(loaiPhongMoi);
-            System.out.println("Cập nhật thành công. Loại phòng mới: " + loaiPhongMoi);
+            switch (loaiPhongMoi.toLowerCase()) {
+                case "simple":
+                    phong.setLoaiPhong("Simple Room");
+                    break;
+                case "double":
+                    phong.setLoaiPhong("Double Room");
+                    break;
+                case "vip":
+                    phong.setLoaiPhong("VIP Room");
+                    break;
+                default:
+                    System.out.println("\nLoại phòng không hợp lệ: " + loaiPhongMoi);
+                    return;
+            }
+
+            System.out.println("\nCập nhật thành công. Loại phòng mới: " + phong.getLoaiPhong());
         } else {
-            System.out.println("Không tìm thấy phòng có số: " + soPhong);
+            System.out.println("\nKhông tìm thấy phòng có số: " + soPhong);
         }
     }
 }
