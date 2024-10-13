@@ -3,24 +3,24 @@ package model;
 import java.util.Date;
 
 public class DatPhong {
-    private Phong Phong;
+    private Phong phong;
     private KhachHang khachHang;
     private Date ngayDat;
     private Date ngayTra;
 
-    public DatPhong(Phong Phong, KhachHang khachHang, Date ngayDat, Date ngayTra) {
-        this.Phong = Phong;
+    public DatPhong(Phong phong, KhachHang khachHang, Date ngayDat, Date ngayTra) {
+        this.phong = phong;
         this.khachHang = khachHang;
         this.ngayDat = ngayDat;
         this.ngayTra = ngayTra;
     }
 
     public Phong getPhong() {
-        return Phong;
+        return phong;
     }
 
     public void setPhong(Phong phong) {
-        this.Phong = Phong;
+        this.phong = phong;
     }
 
     public KhachHang getKhachHang() {
@@ -50,14 +50,7 @@ public class DatPhong {
     // Phương thức để tính giá phòng
     public double tinhGiaPhong(int soNgay) {
         // Lấy giá từ đối tượng Phong
-        double giaPhong = 0;
-        if (Phong instanceof PhongDon) {
-            giaPhong = ((PhongDon) Phong).getGia();
-        } else if (Phong instanceof PhongDoi) {
-            giaPhong = ((PhongDoi) Phong).getGia();
-        } else if (Phong instanceof PhongVIP) {
-            giaPhong = ((PhongVIP) Phong).getGia();
-        }
+        double giaPhong = phong.getGia(); // Gọi phương thức getGia từ lớp cha Phong
         return giaPhong * soNgay;
     }
 }
