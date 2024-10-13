@@ -105,13 +105,13 @@ public class Main {
                         String key = NhapDuLieu.xoa();
                         KhachHang khachHang = quanLyKhachHang.TimKiemKhachHang(key);
 
-                        System.out.println("Bạn có chắc chắn muốn xóa khách hàng này? (Y/N)");
+                        System.out.print("Bạn có chắc chắn muốn xóa khách hàng này? (Y/N): ");
                         String confirm = sc.nextLine();
                         if (confirm.equalsIgnoreCase("Y")) {
                             quanLyKhachHang.XoaKhachHang(key);
-                            System.out.println("Khách hàng đã được xóa thành công!");
+                            System.out.println("\nKhách hàng đã được xóa thành công!");
                         } else {
-                            System.out.println("Xóa khách hàng đã bị hủy.");
+                            System.out.println("\nXóa khách hàng đã bị hủy.");
                         }
 
                         // Hiển thị danh sách khách hàng
@@ -206,7 +206,7 @@ public class Main {
                         System.out.println("\nTổng tiền phòng: " + String.format("%,.2f", tienPhong));
                         System.out.println("---------------------------");
 
-                        System.out.println("\nDanh sách dịch vụ: ");
+                        System.out.println("\nDanh sách dịch vụ:\n");
                         quanLyDichVu.HienThiDichVu();
 
                         int soDichVu = NhapDuLieu.nhapSoLuongDVUsed();
@@ -223,7 +223,7 @@ public class Main {
 
                                     DichVu dichVu = quanLyDichVu.TimKiemDichVu(tenDichVu);
                                     if (dichVu == null) {
-                                        System.out.println("\nDịch vụ không tồn tại.");
+                                        System.out.println("\nLỗi: Dịch vụ không tồn tại.");
                                         continue;
                                     }
 
@@ -246,9 +246,11 @@ public class Main {
 
                         System.out.println("\nTổng tiền dịch vụ: " + String.format("%,.2f", tongTienDichVu));
 
+                        System.out.println("--------------------------------");
                         double tongTien = tienPhong + tongTienDichVu;
                         System.out.println("\nTổng tiền thanh toán: " + String.format("%,.2f", tongTien));
 
+                        System.out.println("--------------------------------");
                         phongThanhToan.setTrangThai("Trong");
 
                         System.out.println("\nThanh toán thành công!");
@@ -317,13 +319,13 @@ public class Main {
                         String key = NhapDuLieu.xoa();
                         NhanVien nhanVien = quanLyNhanVien.TimKiemNhanVien(key);
 
-                        System.out.println("Bạn có chắc chắn muốn xóa nhân viên này? (Y/N)");
+                        System.out.print("Bạn có chắc chắn muốn xóa nhân viên này? (Y/N): ");
                         String confirm = sc.nextLine();
                         if (confirm.equalsIgnoreCase("Y")) {
                             quanLyNhanVien.XoaNhanVien(key);
-                            System.out.println("Khách hàng đã được xóa thành công!");
+                            System.out.println("\nKhách hàng đã được xóa thành công!");
                         } else {
-                            System.out.println("Xóa khách hàng đã bị hủy.");
+                            System.out.println("\nLệnh xóa khách hàng đã bị hủy.");
                         }
 
                         // Hiển thị danh sách nhân viên
