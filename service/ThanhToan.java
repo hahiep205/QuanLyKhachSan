@@ -10,20 +10,11 @@ import java.util.ArrayList;
 public class ThanhToan {
 
     public double TienPhong(Phong phong, int soNgay) {
-        double GiaPhong;
-
-        if (phong instanceof PhongDon) {
-            GiaPhong = 300000;
-        } else if (phong instanceof PhongDoi) {
-            GiaPhong = 500000;
-        } else if (phong instanceof PhongVIP) {
-            GiaPhong = 1000000;
+        if (phong != null && soNgay > 0) {
+            return phong.getGia() * soNgay;
         } else {
-            System.out.println("Loại phòng không hợp lệ.");
-            return 0;
+            return 0.0;
         }
-
-        return GiaPhong * soNgay;
     }
 
     public double TienDichVu(ArrayList<DichVu> dichVu) {
