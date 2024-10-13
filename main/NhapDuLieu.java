@@ -3,8 +3,10 @@ package main;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import model.DichVu;
+import model.KhachHang;
 import model.Phong;
 import service.QuanLyDichVu;
+import service.QuanLyKhachHang;
 import service.QuanLyPhong;
 
 public class NhapDuLieu {
@@ -255,13 +257,18 @@ public class NhapDuLieu {
         return chon;
     }
 
-    public static String nhapSoPhong() {
+    public static String nhapSoPhong(QuanLyPhong quanLyPhong) {
         Scanner sc = new Scanner(System.in);
         String key = "";
         while (true) {
             try {
                 System.out.print("\nNhập số phòng: ");
                 key = sc.nextLine();
+                Phong phong = quanLyPhong.timPhong(key);
+                if (phong == null) {
+                    System.out.println("\nKhông tìm thấy phòng có số: " + key);
+                    continue;
+                }
                 if (key.trim().isEmpty()) {
                     throw new IllegalArgumentException("\nLỗi: Số phòng không được để trống.");
                 }
@@ -284,6 +291,12 @@ public class NhapDuLieu {
             try {
                 System.out.print("Nhập loại phòng mới (simple, double, vip): ");
                 key = sc.nextLine();
+                if (!key.equalsIgnoreCase("simple")
+                        && !key.equalsIgnoreCase("double")
+                        && !key.equalsIgnoreCase("vip")) {
+                    System.out.println("\nLoại phòng không hợp lệ. Vui lòng nhập lại.");
+                    continue;
+                }
                 if (key.trim().isEmpty()) {
                     throw new IllegalArgumentException("\nLỗi: Loại phòng không được để trống.");
                 }
@@ -394,14 +407,19 @@ public class NhapDuLieu {
         return key;
     }
 
-    public static String nhapTenKhachThanhToan() {
+    public static String nhapTenKhachThanhToan(QuanLyKhachHang quanLyKhachHang) {
         Scanner sc = new Scanner(System.in);
         String key = "";
         while (true) {
             try {
                 System.out.print("\nNhập tên khách hàng: ");
                 key = sc.nextLine().trim();
-
+                
+                KhachHang khachThanhToan = quanLyKhachHang.TimKiemKhachHang(key);
+                if (khachThanhToan == null) {
+                    System.out.println("\nLỗi : không tìm thấy khách hàng. Mời nhập lại.");
+                    continue;
+                }
                 if (key.isEmpty()) {
                     throw new IllegalArgumentException("Tên khách hàng không được để trống.");
                 }
@@ -678,17 +696,17 @@ public class NhapDuLieu {
         Scanner sc = new Scanner(System.in);
         String key = "";
         while (true) {
-        try {
-            System.out.print("\nNhập tên, số điện thoại, hoặc CCCD của nhân viên cần sửa thông tin: ");
-            key = sc.nextLine();
-            if (key.trim().isEmpty()) {
-                throw new IllegalArgumentException("\nKhông được để trống.");
+            try {
+                System.out.print("\nNhập tên, số điện thoại, hoặc CCCD của nhân viên cần sửa thông tin: ");
+                key = sc.nextLine();
+                if (key.trim().isEmpty()) {
+                    throw new IllegalArgumentException("\nKhông được để trống.");
+                }
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("\nLỗi: " + e.getMessage());
             }
-            break;
-        } catch (IllegalArgumentException e) {
-            System.out.println("\nLỗi: " + e.getMessage());
         }
-    }
         return key;
     }
 
