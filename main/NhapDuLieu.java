@@ -56,7 +56,7 @@ public class NhapDuLieu {
         String ten = "";
         while (true) {
             try {
-                System.out.print("\nNhập tên khách hàng (ít nhất 2 ký tự, không nên dùng dấu): ");
+                System.out.print("\nNhập tên khách hàng (ít nhất 2 ký tự, không dùng dấu): ");
                 ten = sc.nextLine();
                 if (ten.trim().isEmpty()) {
                     throw new IllegalArgumentException("\nLỗi: Tên không được để trống.");
@@ -67,7 +67,7 @@ public class NhapDuLieu {
                 }
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.print(e.getMessage() + "\nVui lòng nhập lại: ");
+                System.out.print("\n" + e.getMessage() + "\nVui lòng nhập lại:/n");
             }
         }
         return ten;
@@ -89,7 +89,7 @@ public class NhapDuLieu {
                 }
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.print("\n" + e.getMessage() + "Vui lòng nhập lại: ");
+                System.out.print("\n" +e.getMessage() + "\n");
             }
         }
         return sdt;
@@ -111,7 +111,7 @@ public class NhapDuLieu {
                 }
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.print("\n" + e.getMessage() + "Vui lòng nhập lại: ");
+                System.out.print("\n" + e.getMessage() + "\n");
             }
         }
         return cccd;
@@ -158,7 +158,7 @@ public class NhapDuLieu {
         String tenMoi = "";
         while (true) {
             try {
-                System.out.print("\nNhập tên mới (ít nhất 2 ký tự, không nên dùng dấu): ");
+                System.out.print("\nNhập tên mới (ít nhất 2 ký tự, không dùng dấu): ");
                 tenMoi = sc.nextLine();
                 if (tenMoi.trim().isEmpty()) {
                     throw new IllegalArgumentException("\nLỗi: Không được để trống.");
@@ -294,7 +294,7 @@ public class NhapDuLieu {
                 if (!key.equalsIgnoreCase("simple")
                         && !key.equalsIgnoreCase("double")
                         && !key.equalsIgnoreCase("vip")) {
-                    System.out.println("\nLoại phòng không hợp lệ. Vui lòng nhập lại.");
+                    System.out.println("\nLoại phòng không hợp lệ. Vui lòng nhập lại.\n");
                     continue;
                 }
                 if (key.trim().isEmpty()) {
@@ -313,12 +313,16 @@ public class NhapDuLieu {
         String key = "";
         while (true) {
             try {
-                System.out.print("\nNhập tên khách hàng (Ví dụ: Nguyen Van A): ");
+                System.out.print("\nNhập tên khách hàng (ít nhất 2 ký tự, không dùng dấu): ");
                 key = sc.nextLine();
                 if (key.trim().isEmpty()) {
                     throw new IllegalArgumentException("\nLỗi: Tên khách hàng không được để trống.");
                 }
-                // Kiểm tra định dạng tên (chỉ chứa ký tự chữ cái và khoảng trắng)
+                // Kiểm tra định dạng tên
+                if (!key.matches("[\\p{L} ]{2,}")) { // \\p{L} cho phép ký tự chữ từ mọi ngôn ngữ
+                    throw new IllegalArgumentException("Lỗi: Tên phải chứa ít nhất 2 ký tự chữ.");
+                }
+                // Kiểm tra định dạng tên
                 if (!key.matches("[a-zA-Z\\s]+")) {
                     throw new IllegalArgumentException("Tên khách hàng chỉ được chứa ký tự chữ cái và khoảng trắng.");
                 }
@@ -342,11 +346,11 @@ public class NhapDuLieu {
                 }
                 // Kiểm tra định dạng số điện thoại (10 ký tự số)
                 if (!key.matches("\\d{10}")) {
-                    throw new IllegalArgumentException("Lỗi: Số điện thoại phải có 10 ký tự số.");
+                    throw new IllegalArgumentException("Lỗi: Số điện thoại phải có 10 ký tự số.\n");
                 }
                 // Kiểm tra nếu số điện thoại bắt đầu bằng số "0"
                 if (!key.startsWith("0")) {
-                    throw new IllegalArgumentException("Lỗi: Số điện thoại phải bắt đầu bằng số 0.");
+                    throw new IllegalArgumentException("Lỗi: Số điện thoại phải bắt đầu bằng số 0.\n");
                 }
                 break;
             } catch (IllegalArgumentException e) {
@@ -368,7 +372,7 @@ public class NhapDuLieu {
                 }
                 // Kiểm tra định dạng CCCD (12 ký tự số)
                 if (!key.matches("\\d{12}")) {
-                    throw new IllegalArgumentException("Lỗi: Căn cước công dân phải có 12 ký tự số.");
+                    throw new IllegalArgumentException("Lỗi: Căn cước công dân phải có 12 ký tự số.\n");
                 }
                 break;
             } catch (IllegalArgumentException e) {
@@ -391,7 +395,7 @@ public class NhapDuLieu {
 
                 Phong phongDat = quanLyPhong.timPhong(key);
                 if (phongDat == null) {
-                    throw new IllegalArgumentException("\nLỗi: Phòng không tồn tại.");
+                    throw new IllegalArgumentException("Lỗi: Phòng không tồn tại.");
                 }
                 if (!phongDat.getTrangThai().equals("Trong")) {
                     throw new IllegalArgumentException("\nLỗi: Phòng không khả dụng!");
@@ -450,16 +454,16 @@ public class NhapDuLieu {
                 phongThanhToan = quanLyPhong.timPhong(key);
 
                 if (phongThanhToan == null) {
-                    throw new IllegalArgumentException("Phòng không tồn tại.");
+                    throw new IllegalArgumentException("Phòng không tồn tại.\n");
                 }
 
                 if (!phongThanhToan.getTrangThai().equals("Full")) {
-                    throw new IllegalArgumentException("Phòng không khả dụng hoặc chưa được đặt.");
+                    throw new IllegalArgumentException("Phòng không khả dụng hoặc chưa được đặt.\n");
                 }
 
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("Lỗi: " + e.getMessage());
+                System.out.println("\nLỗi: " + e.getMessage());
             }
         }
         return key;
@@ -473,12 +477,12 @@ public class NhapDuLieu {
                 System.out.print("Nhập số ngày khách ở: ");
                 key = sc.nextInt();
                 if (key <= 0) {
-                    System.out.println("Lỗi: Số ngày phải lớn hơn 0.");
+                    System.out.println("\nLỗi: Số ngày phải lớn hơn 0.\n");
                     continue;
                 }
                 break;
             } catch (InputMismatchException e) {
-                System.out.println("Lỗi: Vui lòng nhập một số nguyên hợp lệ.");
+                System.out.println("\nLỗi: Vui lòng nhập một số nguyên hợp lệ.\n");
                 sc.next();
             }
         }
@@ -493,12 +497,12 @@ public class NhapDuLieu {
                 System.out.print("\nNhập số lượng dịch vụ khách sử dụng: ");
                 key = sc.nextInt();
                 if (key < 0) {
-                    System.out.println("Lỗi: Số lượng dịch vụ phải không âm.");
+                    System.out.println("\nLỗi: Số lượng dịch vụ phải không âm.\n");
                     continue;
                 }
                 break;
             } catch (InputMismatchException e) {
-                System.out.println("\nLỗi: Vui lòng nhập một số nguyên không âm.");
+                System.out.println("\nLỗi: Vui lòng nhập một số nguyên dương.\n");
                 sc.next();
             }
         }
@@ -518,7 +522,7 @@ public class NhapDuLieu {
                 }
                 break;
             } catch (InputMismatchException e) {
-                System.out.println("\nLỗi: Vui lòng nhập một số nguyên không âm.");
+                System.out.println("\nLỗi: Vui lòng nhập một số nguyên dương.");
                 sc.next();
             }
         }
@@ -530,11 +534,14 @@ public class NhapDuLieu {
         String key = "";
         while (true) {
             try {
-                System.out.print("\nNhập tên dịch vụ (không nên dùng dấu): ");
+                System.out.print("\nNhập tên dịch vụ (không dùng dấu): ");
                 key = sc.nextLine().trim();
-
                 if (key.isEmpty()) {
                     throw new IllegalArgumentException("Tên dịch vụ không được để trống.");
+                }
+                // Kiểm tra định dạng số phòng
+                if (key.matches("\\d+")) {
+                    throw new IllegalArgumentException("Tên dịch vụ chỉ được chứa ký tự chữ.");
                 }
                 break;
             } catch (IllegalArgumentException e) {
@@ -572,12 +579,12 @@ public class NhapDuLieu {
                 System.out.print("Nhập giá dịch vụ: ");
                 key = sc.nextDouble();
                 if (key <= 0) {
-                    System.out.println("\nLỗi: Vui lòng nhập số nguyên dương (lớn hơn 0).");
+                    System.out.println("\nLỗi: Vui lòng nhập số nguyên dương lớn hơn 0.\n");
                 } else {
                     break;
                 }
             } catch (InputMismatchException e) {
-                System.out.println("\nLỗi: Vui lòng nhập một số hợp lệ.");
+                System.out.println("\nLỗi: Vui lòng nhập một số nguyên dương hợp lệ.\n");
                 sc.next();
             }
         }
@@ -609,7 +616,7 @@ public class NhapDuLieu {
         String ten = "";
         while (true) {
             try {
-                System.out.print("\nNhập tên nhân viên (ít nhất 2 ký tự, không nên dùng dấu): ");
+                System.out.print("\nNhập tên nhân viên (ít nhất 2 ký tự, không dùng dấu): ");
                 ten = sc.nextLine();
                 if (ten.trim().isEmpty()) {
                     throw new IllegalArgumentException("Tên không được để trống.");
@@ -634,11 +641,11 @@ public class NhapDuLieu {
                 System.out.print("Nhập quê quán: ");
                 queQuan = sc.nextLine();
                 if (queQuan.trim().isEmpty()) {
-                    throw new IllegalArgumentException("Quê quán không được để trống.");
+                    throw new IllegalArgumentException("Quê quán không được để trống.\n");
                 }
                 // Kiểm tra định dạng quê quán
                 if (!queQuan.matches("[\\p{L} ]+")) {
-                    throw new IllegalArgumentException("Quê quán chỉ được chứa chữ cái và khoảng trắng.");
+                    throw new IllegalArgumentException("Quê quán chỉ được chứa chữ cái và khoảng trắng.\n");
                 }
                 break;
             } catch (IllegalArgumentException e) {
@@ -658,9 +665,13 @@ public class NhapDuLieu {
                 if (soTaiKhoan.trim().isEmpty()) {
                     throw new IllegalArgumentException("Số tài khoản không được để trống.");
                 }
+                // Kiểm tra định dạng số tài khoản (10 ký tự số)
+                if (!soTaiKhoan.matches("\\d{10}")) {
+                    throw new IllegalArgumentException("Số tài khoản phải có 10 ký tự số.\n");
+                }
                 // Kiểm tra định dạng số tài khoản
                 if (!soTaiKhoan.matches("\\d+")) {
-                    throw new IllegalArgumentException("Số tài khoản chỉ được chứa ký tự số.");
+                    throw new IllegalArgumentException("Số tài khoản chỉ được chứa ký tự số.\n");
                 }
                 break;
             } catch (IllegalArgumentException e) {
@@ -682,11 +693,11 @@ public class NhapDuLieu {
                 }
                 // Kiểm tra định dạng số tài khoản (10 ký tự số)
                 if (!soTaiKhoanMoi.matches("\\d{10}")) {
-                    throw new IllegalArgumentException("Số tài khoản mới phải có 10 ký tự số.");
+                    throw new IllegalArgumentException("Số tài khoản mới phải có 10 ký tự số.\n");
                 }
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("Lỗi: " + e.getMessage());
+                System.out.println("\nLỗi: " + e.getMessage());
             }
         }
         return soTaiKhoanMoi;
@@ -697,7 +708,7 @@ public class NhapDuLieu {
         String key = "";
         while (true) {
             try {
-                System.out.print("\nNhập tên, số điện thoại, hoặc CCCD của nhân viên cần sửa thông tin: ");
+                System.out.print("\nNhập quê quán mới: ");
                 key = sc.nextLine();
                 if (key.trim().isEmpty()) {
                     throw new IllegalArgumentException("\nKhông được để trống.");
