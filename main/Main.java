@@ -25,7 +25,7 @@ public class Main {
         QuanLyPhong quanLyPhong = new QuanLyPhong();
         QuanLyDichVu quanLyDichVu = new QuanLyDichVu();
         QuanLyNhanVien quanLyNhanVien = new QuanLyNhanVien();
-
+        
         ThanhToan thanhToan = new ThanhToan();
         Scanner sc = new Scanner(System.in);
 
@@ -72,7 +72,9 @@ public class Main {
                         // Tìm kiếm khách hàng
                     } else if (qlkh == 2) {
                         String keyword = NhapDuLieu.nhapThongTinDeTimKiem();
+                        
                         KhachHang khachHang = quanLyKhachHang.TimKiemKhachHang(keyword);
+                        
                         if (khachHang != null) {
                             System.out.println("\nThông tin khách hàng:");
                             System.out.println("\tTên: " + khachHang.getTen());
@@ -86,6 +88,7 @@ public class Main {
                         // Sửa thông tin khách hàng
                     } else if (qlkh == 3) {
                         String key = NhapDuLieu.nhapThongTinDeSua();
+                        
                         KhachHang khachHang = quanLyKhachHang.TimKiemKhachHang(key);
 
                         if (khachHang != null) {
