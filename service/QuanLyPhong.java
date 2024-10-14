@@ -41,8 +41,8 @@ public class QuanLyPhong {
         Phong phong = timPhong(soPhong);
         if (phong != null) {
             switch (loaiPhongMoi.toLowerCase()) {
-                case "simple":
-                    phong.setLoaiPhong("Simple Room");
+                case "single":
+                    phong.setLoaiPhong("Single Room");
                     break;
                 case "double":
                     phong.setLoaiPhong("Double Room");
