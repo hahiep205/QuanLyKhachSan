@@ -6,7 +6,7 @@ public class PhongDon extends Phong {
 
     // Constructor gọi constructor của lớp cha Phong
     public PhongDon(String SoPhong, String TrangThai) {
-        super(SoPhong, "Simple Room", TrangThai, GIA);
+        super(SoPhong, "Single Room", TrangThai, GIA);
     }
 
     // Ghi đè phương thức getGia từ lớp cha để trả về giá của phòng đơn
